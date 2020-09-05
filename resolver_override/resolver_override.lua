@@ -30,43 +30,43 @@ body_slider = ui.reference("PLAYERS", "Adjustments", "Force body yaw value")
 --override key
 
 function setbodyyaw()
-    if ui.get(override, true) then
-    else
-        return
-    end
-    if ui.get(body_slider) == 0 and canManual == true then
-        ui.set(forcebody, true)
-        ui.set(body_slider, 60)
-        ui.set(applyall, true)
-        canManual = false
-    end
-    if ui.get(body_slider) == 60 and canManual == true then
-        ui.set(forcebody, true)
-        ui.set(body_slider, -60)
-        ui.set(applyall, true)
-        canManual = false
-    end
+	if ui.get(override, true) then
+	else
+		return
+	end
+	if ui.get(body_slider) == 0 and canManual == true then
+		ui.set(forcebody, true)
+		ui.set(body_slider, 60)
+		ui.set(applyall, true)
+		canManual = false
+	end
+	if ui.get(body_slider) == 60 and canManual == true then
+		ui.set(forcebody, true)
+		ui.set(body_slider, -60)
+		ui.set(applyall, true)
+		canManual = false
+	end
     if ui.get(body_slider) == -60 and canManual == true then
-        ui.set(forcebody, false)
-        ui.set(body_slider, 0)
-        ui.set(applyall, true)
-        canManual = false
+		ui.set(forcebody, false)
+		ui.set(body_slider, 0)
+		ui.set(applyall, true)
+		canManual = false
     end
 end
 
 function on_paint()
-    if ui.get(override, true) then
-    else
-        return
-    end
-    if ui.get(override_key) then
-        if canManual == true then
-            setbodyyaw()
-            canManual = false
-        end
-    else
-        canManual = true
-    end
+	if ui.get(override, true) then
+	else
+		return
+	end
+	if ui.get(override_key) then
+		if canManual == true then
+			setbodyyaw()
+			canManual = false
+		end
+	else
+		canManual = true
+	end
 end
 client.set_event_callback("paint", on_paint)
 
@@ -75,10 +75,10 @@ client.set_event_callback("paint", on_paint)
 local r, g, b = ui.get(override_color) --this doesn't work cus flags are really weird so I'm just setting a static color instead, if anyone knows how to make this work then please let me know
 
 client.register_esp_flag("LEFT", 255, 0, 255, function(c)
-    if ui.get(body_slider) == 60 then return true end
+	if ui.get(body_slider) == 60 then return true end
 end)
 client.register_esp_flag("RIGHT", 255, 0, 255, function(c)
-    if ui.get(body_slider) == -60 then return true end
+	if ui.get(body_slider) == -60 then return true end
 end)
 
 --override indicators
@@ -113,6 +113,6 @@ end)
 --reset override on round start
 client.set_event_callback("round_start", function()
 	ui.set(body_slider, 0)
-    ui.set(forcebody, false)
-    ui.set(applyall, true)
+	ui.set(forcebody, false)
+	ui.set(applyall, true)
 end)
