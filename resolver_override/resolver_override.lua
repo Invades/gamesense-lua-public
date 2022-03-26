@@ -1,6 +1,4 @@
-client_draw_text, client_draw_indicator, client_set_event_callback, client_screen_size, ui_new_slider, ui_new_combobox, ui_reference, ui_set_visible, ui_is_menu_open, ui_new_color_picker, ui_set_callback, ui_set, ui_new_checkbox, ui_new_hotkey, ui_new_button, ui_new_multiselect, ui_get = client.draw_text, client.draw_indicator, client.set_event_callback, client.screen_size, ui.new_slider, ui.new_combobox, ui.reference, ui.set_visible, ui.is_menu_open, ui.new_color_picker, ui.set_callback, ui.set, ui.new_checkbox, ui.new_hotkey, ui.new_button, ui.new_multiselect, ui.get
-
---menu shit
+-- menu shit
 override = ui.new_checkbox("RAGE", "Other", "Resolver override")
 override_color = ui.new_color_picker("RAGE", "Other", "\n flag")
 override_key = ui.new_hotkey("RAGE", "Other", "Override key")
@@ -19,7 +17,7 @@ local function update_menu(visible)
 end
 client.set_event_callback("paint", update_menu)
 
---references men
+-- references men
 selectedplayer = ui.reference("PLAYERS", "Players", "Player list")
 forcebody = ui.reference("PLAYERS", "Adjustments", "Force body yaw")
 resetlist = ui.reference("PLAYERS", "Players", "Reset all")
@@ -27,7 +25,7 @@ correction_active = ui.reference("PLAYERS", "Adjustments", "Correction active")
 applyall = ui.reference("players", "adjustments", "Apply to all")
 body_slider = ui.reference("PLAYERS", "Adjustments", "Force body yaw value")
 
---override key
+-- override key
 
 function setbodyyaw()
 	if ui.get(override, true) then
@@ -70,7 +68,7 @@ function on_paint()
 end
 client.set_event_callback("paint", on_paint)
 
---overide flag
+-- overide flag
 
 local r, g, b = ui.get(override_color) --this doesn't work cus flags are really weird so I'm just setting a static color instead, if anyone knows how to make this work then please let me know
 
@@ -81,7 +79,7 @@ client.register_esp_flag("RIGHT", 255, 0, 255, function(c)
 	if ui.get(body_slider) == -60 then return true end
 end)
 
---override indicators
+-- override indicators
 
 client.set_event_callback("paint", function()
 
@@ -110,7 +108,7 @@ client.set_event_callback("paint", function()
 	end
 end)
 
---reset override on round start
+-- reset override on round start
 client.set_event_callback("round_start", function()
 	ui.set(body_slider, 0)
 	ui.set(forcebody, false)
